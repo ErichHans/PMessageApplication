@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "yarn": "^1.22.19"
+    "react-native": "^0.71.8"
   }
 }
