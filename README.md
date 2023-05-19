@@ -1,4 +1,4 @@
 # PMessageApplication
-This is an Android Messaging App project programmed with React and JavaScript
+This is an Messaging App project programmed with Java
 # Vietnamese
-* Đây là một dự án về ứng dụng nhắn tin trên Android,sử dụng React Native và JavaScript
+* Đây là một dự án về ứng dụng nhắn tin cho máy tính,sử dụng Java
