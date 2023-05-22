@@ -1,46 +1,43 @@
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class Main extends JFrame implements ActionListener {
-    private JTextArea messageArea; // Vùng hiển thị tin nhắn
-    private JTextField inputField; // Trường nhập liệu tin nhắn
+    private JTextField messageField;
+    private JButton sendButton;
+    private JTextArea messageArea;
 
     public Main() {
-        super("PMessage Application"); // Tiêu đề cửa sổ
+        // Set up the frame
+        setTitle("PMessage");
+        setSize(1280, 720);
+        setLayout(new BorderLayout());
 
-        // Khởi tạo các thành phần giao diện người dùng
-        messageArea = new JTextArea(10, 30);
-        messageArea.setEditable(false);
-        inputField = new JTextField(30);
-        JButton sendButton = new JButton("Send");
+        // Create the message field
+        messageField = new JTextField();
+        add(messageField, BorderLayout.SOUTH);
 
-        // Đăng ký lắng nghe sự kiện cho nút Send và trường nhập liệu
+        // Create the send button
+        sendButton = new JButton("Send");
         sendButton.addActionListener(this);
-        inputField.addActionListener(this);
-
-        // Thêm các thành phần vào cửa sổ chính
-        add(new JScrollPane(messageArea), BorderLayout.CENTER);
-        add(inputField, BorderLayout.SOUTH);
         add(sendButton, BorderLayout.EAST);
 
-        // Thiết lập cửa sổ chính
-        setSize(1280, 720);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pack();
+        // Create the message area
+        messageArea = new JTextArea();
+        add(messageArea, BorderLayout.CENTER);
+
+        // Set up the frame to be visible and close when the window is closed
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String message = inputField.getText(); // Lấy nội dung tin nhắn từ trường nhập liệu
-        messageArea.append(message + "\n"); // Thêm tin nhắn vào vùng hiển thị
-        inputField.setText(""); // Xóa trường nhập liệu
+        if (e.getSource() == sendButton) {
+            String message = messageField.getText();
+            messageArea.append("Tin nhắn của bạn: " + message + "\n");
+            messageField.setText("");
+        }
     }
 
     public static void main(String[] args) {
