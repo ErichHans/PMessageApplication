@@ -30,6 +30,7 @@ public class Main extends JFrame implements ActionListener {
         add(sendButton, BorderLayout.EAST);
 
         // Thiết lập cửa sổ chính
+        setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
