@@ -8,30 +8,28 @@ public class Main extends JFrame implements ActionListener {
     private JTextArea messageArea;
 
     public Main() {
-        // Set up the frame
+        // tạo ra giao diện cửa sổ
         setTitle("PMessage");
         setSize(1280, 720);
         setLayout(new BorderLayout());
 
-        // Create the message field
+        // tạo ra nơi để nhập tin nhắn
         messageField = new JTextField();
         add(messageField, BorderLayout.SOUTH);
 
-        // Create the send button
+        // Tạo ra nút Send
         sendButton = new JButton("Send");
         sendButton.addActionListener(this);
         add(sendButton, BorderLayout.EAST);
 
-        // Create the message area
+        // Khu vực hiển thị tin nhắn
         messageArea = new JTextArea();
         add(messageArea, BorderLayout.CENTER);
 
-        // Set up the frame to be visible and close when the window is closed
+        // Cửa sổ hiện ra và có thể tắt khi bấm thoát
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
-    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == sendButton) {
             String message = messageField.getText();
