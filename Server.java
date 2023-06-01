@@ -19,7 +19,6 @@ public class Server {
             String message;
             while ((message = in.readLine()) != null) {
                 System.out.println("Received: " + message);
-                out.println("Echo: " + message);
             }
         } catch (IOException e) {
             e.printStackTrace();
