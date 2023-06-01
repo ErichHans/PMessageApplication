@@ -12,7 +12,7 @@ public class GroupChat extends JFrame implements ActionListener {
     private static final String TERMINATE = "Exit";
     static String name;
     static volatile boolean finished = false;
-    InetAddress group = InetAddress.getByName("224.0.0.6");
+    InetAddress group = InetAddress.getByName("224.0.1.255");
     int port = Integer.parseInt("1234");
     MulticastSocket socket = new MulticastSocket(port);
 
@@ -72,7 +72,7 @@ public class GroupChat extends JFrame implements ActionListener {
         }
     public static void main(String[] args) throws IOException {
         GroupChat groupchat=new GroupChat();
-        System.out.print("Nhập tên:");
+        System.out.print("Enter Name:");
         Scanner sc = new Scanner(System.in);
         name = sc.nextLine();
         sc.close();
