@@ -72,7 +72,7 @@ public class GroupChat extends JFrame implements ActionListener {
         }
     public static void main(String[] args) throws IOException {
         GroupChat groupchat=new GroupChat();
-        System.out.print("Enter your name: ");
+        System.out.print("Enter your name, please: ");
         Scanner sc = new Scanner(System.in);
         name = sc.nextLine();
         sc.close();
