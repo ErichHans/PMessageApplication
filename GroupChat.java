@@ -8,7 +8,7 @@ import java.util.*;
 public class GroupChat extends JFrame implements ActionListener {
     private JTextField messageField;
     private JButton sendButton;
-    private JTextArea messageArea;
+    public static JTextArea messageArea;
     private static final String TERMINATE = "Exit";
     static String name;
     static volatile boolean finished = false;
@@ -39,9 +39,6 @@ public class GroupChat extends JFrame implements ActionListener {
         // Cửa sổ hiện ra và có thể tắt khi bấm thoát
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter your name: ");
-        name = sc.nextLine();
         
         // Since we are deploying
         socket.setTimeToLive(0);
@@ -53,27 +50,36 @@ public class GroupChat extends JFrame implements ActionListener {
         
         // Spawn a thread for reading messages
         t.start();
-        String mess = messageField.getText();
-        String message = mess;
-        message = name + ": " + mess;
-        byte[] buffer = message.getBytes();
-        DatagramPacket datagram = new DatagramPacket(buffer,buffer.length,group,port);
-        socket.send(datagram);
+        
     }
-    public void actionPerformed(ActionEvent e) {
+    public void sendMessage(String message) throws IOException{
+    message = name + ": " + message+"\n";
+    messageArea.append(message);
+    byte[] buffer = message.getBytes();
+    DatagramPacket datagram = new DatagramPacket(buffer,buffer.length,group,port);
+    socket.send(datagram);
+    }
+    public void actionPerformed(ActionEvent e){
         if (e.getSource() == sendButton) {
             String mess = messageField.getText();
-            messageArea.append("Tin nhắn của bạn: " + mess + "\n");
             messageField.setText("");
+            try {
+                sendMessage(mess);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         }
     public static void main(String[] args) throws IOException {
-        new GroupChat();
+        GroupChat groupchat=new GroupChat();
+        System.out.print("Enter your name: ");
+        Scanner sc = new Scanner(System.in);
+        name = sc.nextLine();
+        sc.close();
     }
-    /*public static void add(String[] message){
-        JTextArea messagArea = GroupChat
+    public void addtoma(String message){
         messageArea.append(message);
-    }*/
+    }
 }
 class ReadThread implements Runnable
 {
@@ -91,7 +97,7 @@ class ReadThread implements Runnable
     @Override
     public void run()
     {
-        while(!GroupChatConsole.finished)
+        while(!GroupChat.finished)
         {
                 byte[] buffer = new byte[ReadThread.MAX_LEN];
                 DatagramPacket datagram = new
@@ -102,9 +108,8 @@ class ReadThread implements Runnable
                 socket.receive(datagram);
                 message = new
                 String(buffer,0,datagram.getLength(),"UTF-8");
-                if(!message.startsWith(GroupChatConsole.name))
-                    System.out.println(message);
-                    messageArea.append(message);
+                if(!message.startsWith(GroupChat.name))
+                    GroupChat.messageArea.append(message+"\n");
             }
             catch(IOException e)
             {
