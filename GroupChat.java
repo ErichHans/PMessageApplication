@@ -72,7 +72,7 @@ public class GroupChat extends JFrame implements ActionListener {
         }
     public static void main(String[] args) throws IOException {
         GroupChat groupchat=new GroupChat();
-        System.out.print("Enter your name, please: ");
+        System.out.print("Nhập tên:");
         Scanner sc = new Scanner(System.in);
         name = sc.nextLine();
         sc.close();
@@ -109,7 +109,7 @@ class ReadThread implements Runnable
                 message = new
                 String(buffer,0,datagram.getLength(),"UTF-8");
                 if(!message.startsWith(GroupChat.name))
-                    GroupChat.messageArea.append(message+"\n");
+                    GroupChat.messageArea.append(message);
             }
             catch(IOException e)
             {
