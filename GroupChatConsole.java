@@ -91,6 +91,7 @@ class ReadThread implements Runnable
             catch(IOException e)
             {
                 System.out.println("May chu da dong cua!");
+          
             }
         }
     }
