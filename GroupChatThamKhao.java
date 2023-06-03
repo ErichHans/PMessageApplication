@@ -30,7 +30,7 @@ public class GroupChatThamKhao extends Thread{
   Socket server;
 
   public GroupChatThamKhao() {
-    this.serverName = "localhost";
+    this.serverName = "26.185.226.33";
     this.PORT = 1944;
     this.name = "nickname";
 
