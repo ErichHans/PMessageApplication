@@ -20,6 +20,7 @@ public class GroupChat extends JFrame implements ActionListener {
         // tạo ra giao diện cửa sổ
         setTitle("PMessage");
         setSize(1280, 720);
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         setLayout(new BorderLayout());
 
         // tạo ra nơi để nhập tin nhắn
