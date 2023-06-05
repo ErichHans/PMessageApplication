@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 
-public class Main extends JFrame implements ActionListener{
+public class cac extends JFrame implements ActionListener{
   private String oldMsg = "";
   private Thread read;
   private String serverName;
@@ -31,7 +31,7 @@ public class Main extends JFrame implements ActionListener{
   static String name;
   static volatile boolean finished = false;
 
-  public Main() throws UnknownHostException, IOException {
+  public cac() throws UnknownHostException, IOException {
     this.serverName = "192.168.1.138";
     
     this.PORT = 12345;
