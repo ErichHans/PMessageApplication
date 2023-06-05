@@ -15,8 +15,8 @@ public class Main extends JFrame implements ActionListener {
     public Main(String serverAddress) throws IOException {
         super("PMessage");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
-  
+        setSize(1280, 720);
+
 
         textField = new JTextField();
         textField.addActionListener(this);
@@ -58,7 +58,7 @@ public class Main extends JFrame implements ActionListener {
 
     public static void main(String[] args) throws IOException {
         if (args.length != 1) {
-            System.err.println("Usage: java SimpleChat <server>");
+            System.err.println("Usage: java Main <server>");
             return;
         }
         new Main(args[0]);
