@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.net.*;
 import java.io.*;
 import java.util.*;
-
+/*djtme code toan bug */
 public class GroupChat extends JFrame implements ActionListener {
     private JTextField messageField;
     private JButton sendButton;
