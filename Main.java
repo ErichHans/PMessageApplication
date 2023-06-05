@@ -32,7 +32,7 @@ public class Main extends JFrame implements ActionListener{
   static volatile boolean finished = false;
 
   public Main() throws UnknownHostException, IOException {
-    this.serverName = "thay ip vao day";
+    this.serverName = "localhost";
     this.PORT = 12345;
     server = new Socket(serverName, PORT);
 
