@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.net.*;
 import java.io.*;
 import java.util.*;
-
 public class Main extends JFrame implements ActionListener {
     private JTextField messageField;
     private JButton sendButton;
