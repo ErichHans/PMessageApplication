@@ -11,7 +11,7 @@ public class Main extends JFrame implements ActionListener {
     private static final String TERMINATE = "Exit";
     static String name;
     static volatile boolean finished = false;
-    InetAddress group = InetAddress.getByName("224.0.1.255");
+    InetAddress group = InetAddress.getByName("127.0.1");
     int port = Integer.parseInt("1234");
     MulticastSocket socket = new MulticastSocket(port);
     
@@ -41,9 +41,9 @@ public class Main extends JFrame implements ActionListener {
         // Cửa sổ hiện ra và có thể tắt khi bấm thoát
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
         socket.setTimeToLive(0);
-       
-          
         socket.joinGroup(group);
         Thread t = new Thread(new
         ReadThread(socket,group,port));
