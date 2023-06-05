@@ -5,7 +5,7 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
-public class GroupChat extends JFrame implements ActionListener {
+public class Main extends JFrame implements ActionListener {
     private JTextField messageField;
     private JButton sendButton;
     public static JTextArea messageArea;
@@ -16,7 +16,7 @@ public class GroupChat extends JFrame implements ActionListener {
     int port = Integer.parseInt("1234");
     MulticastSocket socket = new MulticastSocket(port);
 
-    public GroupChat() throws IOException {
+    public Main() throws IOException {
         // tạo ra giao diện cửa sổ
         setTitle("PMessage");
         setSize(1280, 720);
@@ -31,7 +31,7 @@ public class GroupChat extends JFrame implements ActionListener {
         sendButton = new JButton("Send");
         sendButton.addActionListener(this);
         add(sendButton, BorderLayout.EAST);
-
+        
         // Khu vực hiển thị tin nhắn
         messageArea = new JTextArea();
         messageArea.setEditable(false);
@@ -72,7 +72,7 @@ public class GroupChat extends JFrame implements ActionListener {
         }
         }
     public static void main(String[] args) throws IOException {
-        GroupChat groupchat=new GroupChat();
+        Main groupchat=new Main();
         System.out.print("Enter Name:");
         Scanner sc = new Scanner(System.in);
         name = sc.nextLine();
@@ -98,7 +98,7 @@ class ReadThread implements Runnable
     @Override
     public void run()
     {
-        while(!GroupChat.finished)
+        while(!Main.finished)
         {
                 byte[] buffer = new byte[ReadThread.MAX_LEN];
                 DatagramPacket datagram = new
@@ -109,8 +109,8 @@ class ReadThread implements Runnable
                 socket.receive(datagram);
                 message = new
                 String(buffer,0,datagram.getLength(),"UTF-8");
-                if(!message.startsWith(GroupChat.name))
-                    GroupChat.messageArea.append(message);
+                if(!message.startsWith(Main.name))
+                    Main.messageArea.append(message);
             }
             catch(IOException e)
             {
