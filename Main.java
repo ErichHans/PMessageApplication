@@ -15,8 +15,9 @@ public class Main extends JFrame implements ActionListener {
     InetAddress group = InetAddress.getByName("224.0.1.255");
     int port = Integer.parseInt("1234");
     MulticastSocket socket = new MulticastSocket(port);
-
+    
     public Main() throws IOException {
+      
         // tạo ra giao diện cửa sổ
         setTitle("PMessage");
         setSize(1280, 720);
@@ -26,12 +27,13 @@ public class Main extends JFrame implements ActionListener {
         // tạo ra nơi để nhập tin nhắn
         messageField = new JTextField();
         add(messageField, BorderLayout.SOUTH);
-
-        // Tạo ra nút Send
-        sendButton = new JButton("Send");
-        sendButton.addActionListener(this);
-        add(sendButton, BorderLayout.EAST);
         
+        // Tạo ra nút Send
+        sendButton = new JButton("gửi tin nhắn");
+        sendButton.addActionListener(this);
+        setPreferredSize(new Dimension(80, 30));
+        add(sendButton, BorderLayout.EAST);
+
         // Khu vực hiển thị tin nhắn
         messageArea = new JTextArea();
         messageArea.setEditable(false);
@@ -40,16 +42,14 @@ public class Main extends JFrame implements ActionListener {
         // Cửa sổ hiện ra và có thể tắt khi bấm thoát
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        // Since we are deploying
         socket.setTimeToLive(0);
-        //this on localhost only (For a subnet set it as 1)
+       
           
         socket.joinGroup(group);
         Thread t = new Thread(new
         ReadThread(socket,group,port));
         
-        // Spawn a thread for reading messages
+        
         t.start();
         
     }
